@@ -3,20 +3,25 @@ import Footer from "../component/Footer.js";
 import Navbar from "../component/Navbar";
 import "../css/score.css";
 import "../css/style.css";
-import { CheckScoreForScorePage, Checkuser } from "../api/hitapi";
+import { CheckScoreForScorePage, Checkscore, Checkuser } from "../api/hitapi";
 import avatar from "../images/avatar.jpg";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Score = () => {
   const [Showscore, setShowscore]= useState([]);
   const [score, setScore] = useState("");
+  const [name,setName]= useState('');
+  const [ProfileImage,setProfileImage]= useState('');
 
   useEffect(() => {
     const ani = Cookies.get("ani");
     Checkuser(ani).then((response) => {
-      console.log("r", response.data.Score);
+      console.log("r", response.data.Points);
+      setName(response.data.Points.name);
       setShowscore(response.data.Score);
+      setProfileImage(response.data.Points.imageName);
     });
     CheckUserScore();
   }, []);
@@ -29,6 +34,21 @@ const Score = () => {
       Cookies.set("Score",response.data.Score);
     })
   }
+
+  const redirectToGame = (gameUrl, gameId) => {
+    const ani = Cookies.get("ani");
+
+    Checkscore(ani, gameId).then((response) => {
+      if (response.data.response === "Play") {
+        window.location.href = gameUrl + "?userId=" + ani + "&gameId=" + gameId;
+      } else {
+        Swal.fire({
+          text: "You Don't Have Sufficient Points",
+          icon: "error",
+        });
+      }
+    });
+  };
 
   console.log("Score", Showscore);
   return (
@@ -64,12 +84,12 @@ const Score = () => {
       <section className="page-title-area page-title-bg1">
         <div className="container">
           <div className="page-title-content">
-            <img src={avatar} className="player-image" alt="image" />
+            <img src={ProfileImage} className="player-image" alt="i" />
             <br />
             <h1 title="Sarah Taylor" style={{ color: "white" }}>
-              Gaurav Taylor
+              {name}
             </h1>
-            <span className="sub-title">Gautay05</span>>
+            {/* <span className="sub-title">{name}</span> */}
             <div class="btn-box d-flex justify-content-center">
               <span class="default-btn">Score : {score}</span>
             </div>
@@ -88,8 +108,8 @@ const Score = () => {
                 const ani = Cookies.get("ani");
                 return (
                   <div className="col-lg-4 col-md-6">
-                    <div className="single-live-stream-item">
-                      <img src={item.imageLink} alt="image" />
+                    <div className="single-live-stream-item" onClick={()=>{redirectToGame(item.gameLink,item.gameId)}}>
+                      <img src={item.imageLink} alt="i" />
                       <div className="content">
                         <h3 style={{ color: "white" }}>{item.gameName}</h3>
                         <ul className="meta">
@@ -100,16 +120,7 @@ const Score = () => {
                       <a href="#!!" className="video-btn">
                         <i className="flaticon-play-button" />
                       </a>
-                      <Link
-                        to={
-                          item.gameLink +
-                          "?userId=" +
-                          ani +
-                          "&gameId=" +
-                          item.gameId
-                        }
-                        className="link-btn"
-                      />
+                      
                     </div>
                   </div>
                 );

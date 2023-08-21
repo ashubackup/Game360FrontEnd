@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import ProfileImage from "../images/3.png";
-import team1 from "../images/top-team-img1.png";
-import team2 from "../images/top-team-img2.png";
-import team3 from "../images/top-team-img3.png";
-import team4 from "../images/top-team-img4.png";
-import team5 from "../images/top-team-img5.png";
+
 import Navbar from "../component/Navbar";
 import Footer from "./Footer";
 import { Leader } from "../api/hitapi";
+import "../css/profile.css";
 
 const Leaderboard = () => {
   const [list, setList] = useState([]);
+  
   useEffect(() => {
     Leader().then((response) => {
-      console.log("response", response.data.Score);
+      console.log("response", response);
+    
       setList(response.data.Score);
     });
   }, []);
@@ -66,18 +64,31 @@ const Leaderboard = () => {
           style={{ color: "white" }}
         >
           <div className="container">
-            <div className="row">
+            <div class="leader-bord-header">
+              <div class="leader-bord-header-inner"><span>Profile</span></div>
+              <div class="leader-bord-header-inner"><span>Name</span></div>
+              <div class="leader-bord-header-inner"><span>Score</span></div>
+            </div>
+            <div className="player-details-area-inner">
               {list.map((item, index) => {
                 return(
-                <div className="col-lg-6 col-md-12">
-                  <div className="single-stream-schedule-box">
-                    <span className="date">{index+1}</span>
-                    <div className="content">
-                      <span className="time">
-                        <img src={team1} />
-                      </span>
-                      <h3>{item.score}</h3>
+                <div className="player-details-area-box">
+                  <div className="schedule-box">
+                   
+                    <div className="content leader-bord">
+                      <div className="time leader-bord-img">
+                        <img src={item.imageName} class="player-image" alt="im" />
+                      </div>
+                      <div className="leader-box-inner-name">
+                        <span>{item.name}</span>
+                      </div>
+                      <div className="leader-border-score">                        
+                        <span className="score-add">{index+1} Rank</span>
+                        <h3>{item.score}</h3>
+                      </div>
+                      
                     </div>
+
                     <a href="#!" className="link-btn" />
                   </div>
                 </div>

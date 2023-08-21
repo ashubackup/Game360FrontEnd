@@ -35,13 +35,14 @@ import gif1 from "../images/gif1.gif";
 import gif2 from "../images/giphy.webp";
 import coins from "../images/coins.gif";
 import Cookies from "js-cookie";
-import light from "../images/lights.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useNavigate } from "react-router-dom";
 import SubCategory from "./SubCategory";
+import { Button, Modal } from "react-bootstrap";
+import racinggame from '../images/racinggame.webp';
 
 const Homepage = () => {
   const owlCarouselRef = useRef(null);
@@ -58,15 +59,17 @@ const Homepage = () => {
   const [GameLink, setGameLink] = useState([]);
   const [frameDisplay, setFrameDisplay] = useState("none");
   const [height, setHeight] = useState("500px");
-  const [games,setGames]=useState([])
-  const [gameDisplay,setGameDisplay] = useState('none');
-  const [categoryDisplay,setCategoryDisplay] = useState('block');
+  const [games, setGames] = useState([]);
+  const [gameDisplay, setGameDisplay] = useState("none");
+  const [categoryDisplay, setCategoryDisplay] = useState("block");
+  const [modalShow, setModalShow] = useState(false);
+
   useEffect(() => {
     try {
       Gameinfo().then((response) => {
         setList(response.data);
         setImage(response.data);
-        setGames(response.data);
+        // setGames(response.data);
 
         if (owlCarouselRef.current) {
           window.dispatchEvent(new Event("resize"));
@@ -88,6 +91,9 @@ const Homepage = () => {
     loop: true,
     margin: 5,
     stagePadding: 15,
+    autoplay: true,
+    autoPlaySpeed: 300,
+    autoplayTimeout: 1000,
     responsive: {
       0: {
         items: 2,
@@ -202,8 +208,6 @@ const Homepage = () => {
     SubCategory(category);
   };
 
-
-
   const redirectToGame = (gameUrl, gameId) => {
     const ani = Cookies.get("ani");
 
@@ -217,16 +221,116 @@ const Homepage = () => {
         });
       }
     });
-
   };
 
-  const hideGame=()=>{
+  // const renderModalContent = (category) =>
+  // console.log("value",category)
+  // setModalShow(true)
+  // (
+  //   <div className="vertical-modal">
+  //     <div className="vertical-modal-content">
+  //       <h2>Vertical Modal</h2>
+  //       <p>Modal content goes here...</p>
+  //     </div>
+  //     <div className="vertical-modal-close">
+  //       <button onClick={() => setModalShow(false)}>Close</button>
+  //     </div>
+  //   </div>
+  // );
 
+  const handleModalShow = (category) => {
+    console.log("Show")
+    setGames(
+      image.filter((item) => {
+        return item.gameCategory === category;
+      })
+    );
+    console.log("value",games)
+    setModalShow(!modalShow);
+  };
+
+  const handleModalClose = () => {
+    setModalShow(!modalShow);
+  };
+
+  const hideGame = () => {
     window.location.reload();
-  }
+  };
   return (
     <>
       <Navbar />
+
+
+      {/* Button to trigger the modal */}
+      {/* Vertically Centered Bootstrap Modal */}
+      <Modal centered show={modalShow} onHide={handleModalClose}>
+        <div class="c-main-box">
+        <Modal.Header closeButton>
+          <div class="c-box">
+            <Modal.Title>Vertically Centered Modal</Modal.Title>
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+        
+        <div class="c-box-inner">
+        
+          {games.length >0 && games.map((item,index)=>{
+            console.log("Test",item.gameName);
+            return (
+              <>
+              <div class="c-box-inner-img" >  <button className="c-play-btn" type="submit">
+                  Play Game 
+                </button> <button
+                onClick={() => redirectToGame(item.gameUrl, item.id)}
+                className="change-img-btn"
+              ><div className="single-live-stream-item">
+              <img src={item.imageUrl} alt="i" />
+              <div className="content">
+                    <h3 style={{ color: "white" }}>{item.gameName}</h3>
+                  </div></div></button></div></>
+            );
+          })}
+              {/* <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
+              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div> */}
+            </div>
+          {/* Modal content */}
+        
+        {/* { games.length>0 && games.map((item, index) => {
+            console.log("modal fkjsdh",item.gameUrl);
+            (
+              <div className="col-lg-4 col-6">
+              <button
+                onClick={() => redirectToGame(item.gameUrl, item.id)}
+                className="change-img-btn"
+              >
+                <div className="single-live-stream-item">
+                  <img src={item.imageUrl} alt="i" />
+
+                  <div className="content">
+                    <h3 style={{ color: "white" }}>{item.gameName}</h3>
+                  </div>
+                  <a href="#!" className="video-btn">
+                    <i className="flaticon-play-button" />
+                  </a>
+                  <span href="#" className="link-btn" />
+                </div>
+              </button>
+            </div>
+            );
+          })} */}
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer> */}
+        </div>
+      </Modal>
       {/* End Navbar Area */}
       {/* Search Overlay */}
       <div className="search-overlay">
@@ -288,6 +392,9 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <div class="btn-box d-flex justify-content-center">
+          <span class="default-btn">Score : {score}</span>
+        </div>
       <div
         className="upper-games pb-5"
         // style={{
@@ -296,9 +403,7 @@ const Homepage = () => {
         //   backgroundRepeat: "no-repeat",
         // }}
       >
-        <div class="btn-box d-flex justify-content-center">
-          <span class="default-btn">Score : {score}</span>
-        </div>
+        
         <div
           class="row d-flex justify-content-center gif-row"
           style={{
@@ -430,23 +535,23 @@ const Homepage = () => {
         </div>
       </div>
       {/* End Main Banner Area */}
-      <div
-        className="correction1"
-        style={{ color: "white" }}
-      >
+      <div className="correction1" style={{ color: "white" }}>
         <div className="container pb-5">
-          <div className="streams-list" >
+          <div className="streams-list">
             <h3>Top Categories Games</h3>
             <div className="row">
               {image.map((item, index) => {
                 if (item.categoryImage != null) {
                   if (index <= 5) {
                     return (
-                      <div className="col-lg-4 col-6 col" style={{display: `${categoryDisplay}`}}>
+                      <div
+                        className="col-lg-4 col-6 col"
+                        style={{ display: `${categoryDisplay}` }}
+                      >
                         <div
                           className="single-live-stream-item"
                           onClick={() => {
-                            SubCategory(item.gameCategory);
+                            handleModalShow(item.gameCategory);
                           }}
                         >
                           <img
@@ -467,12 +572,14 @@ const Homepage = () => {
                   }
                 }
               })}
-
-            
             </div>
           </div>
-          <div class="btn-box d-flex justify-content-center" >
-            <Link to="/Allcategory" class="default-btn" style={{display:`${categoryDisplay}`}}>
+          <div class="btn-box d-flex justify-content-center">
+            <Link
+              to="/Allcategory"
+              class="default-btn"
+              style={{ display: `${categoryDisplay}` }}
+            >
               See All
             </Link>
           </div>
@@ -608,10 +715,10 @@ const Homepage = () => {
         </div>
       </section>
       {/* Start Subscribe Area */}
-    
       {/* End Subscribe Area */}
       {/* End Social Area */}
       <Footer />
+      
       );
     </>
   );

@@ -1,38 +1,38 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
-   
-    function MyVerticallyCenteredModal(props) {
-      return (
-        <Modal
-          {...props}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Modal heading
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Centered Modal</h4>
-            <p>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-              dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-              consectetur ac, vestibulum at eros.
-            </p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={props.onHide}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-      );
-    }
-    
-    
-  
+function Test() {
+  const [showModal, setShowModal] = useState(false);
 
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
-export default MyVerticallyCenteredModal;
+  return (
+    <div>
+    <Button variant="primary" onClick={handleShow}>
+      Open Vertical Centered Modal
+    </Button>
+
+    <Modal centered show={showModal} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Vertical Centered Modal</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        This is a vertically centered React Bootstrap modal.
+        You can add your content here.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleClose}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  </div>
+
+  );
+}
+
+export default Test;

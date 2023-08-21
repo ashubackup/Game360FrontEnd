@@ -4,26 +4,41 @@ import Navbar from '../component/Navbar';
 import '../css/radeem.css';
 import '../css/style.css';
 import Cookies from 'js-cookie';
-import {RedeemApi} from '../api/hitapi';
+import {Checkuser, RedeemApi} from '../api/hitapi';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { useEffect } from 'react';
 
 const Redeem = () => {
 
   const point=Cookies.get("point");
+  const [modalShow,setModalShow] = useState(true);
+  const [showPoint,setShowPoint]= useState("");
+  const ani=Cookies.get("ani");
 
+  useEffect(()=>{
+    console.log("ani",ani);
+
+    Checkuser(ani).then((res)=>{
+
+      console.log("responsPoints",res.data.Points.points)
+      setShowPoint(res.data.Points.points);
+    })
+  })
   const RedeemPoint=()=>{
-    const ani = Cookies.get("ani");
     if(point>=20)
     {
       RedeemApi(ani).then((response)=>{
         console.log(response.data.points);
+        setShowPoint(response.data.points);
         Cookies.set("point",response.data.points);
+
         Swal.fire({
           text: "SuccessFully Redeem  10 Points",
           icon: "success",
           
         });
-        setTimeout(() => window.location.reload(), 1000);
       })
     }
     else
@@ -36,10 +51,29 @@ const Redeem = () => {
     
 
   }
+
+
+  const handleModalClose = () => {
+    setModalShow(false);
+  };
   return (
     <div>
         <Navbar />
 
+        <Modal centered show={modalShow} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Vertically Centered Modal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* Modal content */}
+          This is a vertically centered modal content for the Points page.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     <div className="hero-banner-area jarallax">
       <div className="container">
         <div className="row">
@@ -47,8 +81,8 @@ const Redeem = () => {
             <div className="hero-banner-content">
               <div className="content">
                 <span className="sub-title d-flex justify-content-center">Your Balance</span>
-                <h1 className=" d-flex justify-content-center" style={{color:'white'}}>{point} points</h1>
-                <h6 className=" d-flex justify-content-center" style={{color:'white'}}>1000 Points =10Rs</h6>
+                <h1 className=" d-flex justify-content-center" style={{color:'white'}}>{showPoint} points</h1>
+                {/* <h6 className=" d-flex justify-content-center" style={{color:'white'}}>1000 Points =10Rs</h6> */}
                 <div className="btn-box d-flex justify-content-center">
                   <button onClick={()=>{RedeemPoint()}} className="default-btn">Redeem</button>
                 </div>
@@ -68,7 +102,7 @@ const Redeem = () => {
               <span className="date">Total earned</span>
               <div className="content">
                 {/* <span class="time">You have earned</span> */}
-                <h3 style={{color:'white'}}> {point} Points</h3>
+                <h3 style={{color:'white'}}> {showPoint} Points</h3>
               </div>
               <a href="#!" className="link-btn" />
             </div>

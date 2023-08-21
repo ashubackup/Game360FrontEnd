@@ -1,21 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
 import '../css/points.css';
 import '../css/style.css';
 import avatar from '../images/avatar.jpg';
 import Cookies from 'js-cookie';
+import { Button, Modal } from 'react-bootstrap';
+import { useEffect } from 'react';
+import { Checkuser } from '../api/hitapi';
 
 
 
 const Points = () => {
 
+  const [modalShow,setModalShow] = useState(true);
+  const [showPoint,setShowPoint] = useState("");
   const point=Cookies.get("point");
   console.log("points",point);
+  const ani = Cookies.get("ani");
+  useEffect(()=>{
 
+    console.log("ani",ani);
+
+    Checkuser(ani).then((res)=>{
+
+      console.log("responsPoints",res.data.Points.points)
+      setShowPoint(res.data.Points.points);
+    })
+  })
+  const handleModalClose = () => {
+    setModalShow(false);
+  };
   return (
     <div>
         <Navbar />
+
+
+        <Modal centered show={modalShow} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Vertically Centered Modal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+          {/* Modal content */}
+          This is a vertically centered modal content for the Points page.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     {/* Search Overlay */}
     <div className="search-overlay">
       <div className="d-table">
@@ -41,7 +76,7 @@ const Points = () => {
     <section className="page-title-area page-title-bg1">
       <div className="container">
         <div className="page-title-content" style={{color:'white'}}>
-          <img src={avatar} className="player-image" alt="image" />
+          <img src={avatar} className="player-image" alt="i" />
           <br />
           <h1 title="Sarah Taylor">Player</h1>
           <span className="sub-title">Player</span>
@@ -57,7 +92,7 @@ const Points = () => {
       <div className="container">
         <div className="tab faq-accordion-tab">
           <ul className="tabs d-flex flex-wrap justify-content-center active">
-            <li className="current"><a href="#!"><i className="bx bx-flag" /> <span>Points: {point}</span></a></li>
+            <li className="current"><a href="#!"><i className="bx bx-flag" /> <span>Points: {showPoint}</span></a></li>
           </ul>
         </div>
       </div>

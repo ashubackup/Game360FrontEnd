@@ -1,12 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import social1 from "../images/social-shape1.png";
-import social2 from "../images/social-shape2.png";
 import social3 from "../images/social-shape3.png";
 import social4 from "../images/social-shape4.png";
 import social5 from "../images/social-shape5.png";
 import social6 from "../images/social-shape6.png";
-import social7 from "../images/social-shape7.png";
 
 
 
@@ -31,7 +29,7 @@ const Footer = () => {
                   <img src={social1} alt="image" />
                   <img src={social3} alt="image" />
                 </div>
-                <a href="#!" className="link-btn" />
+                <a href="https://www.facebook.com/" className="link-btn" />
               </div>
             </div>
             <div className="col-lg-2 col-sm-4 col-md-4 col-6">
@@ -44,7 +42,7 @@ const Footer = () => {
                   <img src={social1} alt="image" />
                   <img src={social4} alt="image" />
                 </div>
-                <a href="#!" className="link-btn" />
+                <a href="https://twitter.com/" className="link-btn" />
               </div>
             </div>
             <div className="col-lg-2 col-sm-4 col-md-4 col-6">
@@ -57,7 +55,7 @@ const Footer = () => {
                   <img src={social1} alt="image" />
                   <img src={social5} alt="image" />
                 </div>
-                <a href="#!" className="link-btn" />
+                <a href="https://www.youtube.com/" className="link-btn" />
               </div>
             </div>
             <div className="col-lg-2 col-sm-4 col-md-4 col-6">
@@ -70,7 +68,7 @@ const Footer = () => {
                   <img src={social1} alt="image" />
                   <img src={social6} alt="image" />
                 </div>
-                <a href="#!" className="link-btn" />
+                <a href="https://www.instagram.com/" className="link-btn" />
               </div>
             </div>
           </div>

@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 
 
-const baseApi = 'http://5.189.166.187:9981/Game360BackEndApi/';
+// const baseApi = 'http://5.189.166.187:9981/Game360BackEndApi/';
+const baseApi='https://game360.bigcash.co.za/';
 // const baseApi='http://localhost:3832/';
 // const gameInfoApi = 'http://5.189.166.187:9981/Game360/'
 
@@ -57,7 +58,12 @@ const RedeemApi=async(ani)=>
     return await axios.post(baseApi +"redeem",parameter);
 }
 
-export  {Checkuser,Gameinfo,Checkscore,Leader,GifApi,CheckScoreForScorePage,RedeemApi};
+const EditName=async(ani,name,imageName)=>{
+    const parameter = {ani:ani,name:name,image:imageName}
+    return await axios.post(baseApi+"editName",parameter);
+}
+
+export  {Checkuser,Gameinfo,Checkscore,Leader,GifApi,CheckScoreForScorePage,RedeemApi,EditName};
 
 
 

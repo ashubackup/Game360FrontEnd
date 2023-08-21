@@ -40,7 +40,7 @@ const Allcategory = () => {
       console.log("reponse", response.data);
 
       setList(response.data);
-      setGames(response.data);
+      // setGames(response.data);
     });
   }, []);
 
@@ -50,7 +50,7 @@ const Allcategory = () => {
     setDisplay("none");
     setGameDisplay("block");
     setGames(
-      games.filter((item) => {
+      list.filter((item) => {
         return item.gameCategory === category;
       })
     );
@@ -72,7 +72,6 @@ const Allcategory = () => {
   };
 
   const hideGame = () => {
-    window.location.reload();
     setDisplay("block");
     setGameDisplay("none");
   };
@@ -120,13 +119,13 @@ const Allcategory = () => {
             </span>
           </div>
         </div>
-        <div className="banner-video-slides owl-carousel owl-theme">
+        <div className="banner-video-slides owl-carousel owl-theme" style={{display : 'none'}}>
           <div className="banner-video-box">
-            <img src={chimneyport} alt="image" />
+            <img src={chimneyport} alt="i" />
             <div className="content"></div>
           </div>
           <div className="banner-video-box">
-            <img src={safeavoid} alt="image" />
+            <img src={safeavoid} alt="i" />
             <div className="content"></div>
           </div>
         </div>
@@ -174,7 +173,7 @@ const Allcategory = () => {
               </Link>
             </div>
 
-            {games.map((item, index) => {
+            {games.length >0 && games.map((item, index) => {
               return (
                 <div
                   className="col-lg-4 col-6"
