@@ -364,6 +364,7 @@ h3.rating1 {
 .owl-item .item {
   width: 125px;
 }
+
   
 }
 @media only screen and (max-width: 575px) {
@@ -373,6 +374,7 @@ h3.rating1 {
 .root{
   overflow: hidden;
 }
+
 }
 /* cus css narendar */
 .edit-box {
@@ -709,7 +711,39 @@ section.social-area {
   height: 145px;
   width: 49%;
 }
+
+
+
 }
+/* //MEdia Query End */
+
+.streams-list {
+  height: max-content;
+  overflow-y: auto;
+}
+.Loader {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vt-show-game .single-live-stream-item img {
+  height: 100% !important;
+  width: 100%;
+}
+.vt-show-game .single-live-stream-item {
+  height: 200px;
+  width: 445px;
+}
+
+.navbar button {
+  position: absolute;
+  bottom: 0;
+  left: 7%;
+}
+
+
 /********    Corrections End        ********/
 
 
@@ -918,11 +952,12 @@ Navbar Area CSS
 }
 
 .zelda-nav .navbar {
-  position: inherit;
-  padding-left: 0;
+  position: relative;
+  /* padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 0; */
+  padding : 0;
 }
 
 .zelda-nav .navbar .navbar-brand {
@@ -4009,7 +4044,7 @@ Live Stream Area CSS
   right: 0;
   bottom: 0;
   /* for testing */
-  /* top: 0 !important; */
+  top: 0 !important;
   padding: 30px 30px 25px;
   z-index: 2;
 }
@@ -9955,12 +9990,17 @@ Sidebar Modal CSS
 }
 button.img-btn {
   padding: 0 !important;
+  margin: 38px 0;
 }
 .iframe{
 width: 500px;
 }
 .radius{
   border-radius: 15px;
+}
+.upper-games {
+  overflow: hidden !important;
+  padding-top: 35px !important;
 }
 
 button.img-btn img {
@@ -9997,7 +10037,11 @@ button.img-btn img {
   /* width: 350px;
   height: 350px; */
 }
-  
+.upper-games {
+  overflow: hidden !important;
+  padding-top: 35px !important;
+}
+
 }
 
 @media only screen and (max-width: 375px) {
@@ -10006,6 +10050,10 @@ button.img-btn img {
     /* width: 250px;
     height: 250px; */
   }
+  button.img-btn {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
   }
 /*# sourceMappingURL=style.css.map */
 

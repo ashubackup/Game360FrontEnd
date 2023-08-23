@@ -1,11 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../css/style.css';
+import {MdMusicNote,MdMusicOff} from 'react-icons/md'
+import TestMusic from "../Music/TestMusic.mp3";
+import useSound from "use-sound";
+import Cookies from 'js-cookie';
+
+
+const newAudio = new Audio(TestMusic);
+     // Save the Audio object in state
 
 const Navbar = () => {
 
   const [menu,setMenu] = useState('none');
+  const [audio, setAudio] = useState(null); // State to hold the Audio object
+  const [isPlaying, setIsPlaying] = useState(localStorage.getItem("music")); // State to track playing status
   // let menuRef = useRef();
+  
+
+  const toggleAudio = () => {
+    if (audio) {
+      if (isPlaying) {
+        audio.pause();
+        setIsPlaying(false);
+        localStorage.setItem("music", false);
+      } else {
+        audio.play();
+        setIsPlaying(true);
+        localStorage.setItem("music", true);
+      }
+    }
+  };
+ 
+ 
+ useEffect(()=>{
+  localStorage.setItem("music", false);
+  setAudio(newAudio);
+
+    // Set initial playback state based on local storage
+    
+ },[])
+
+
   const showMenu=()=> {
 
     console.log("inside showMenu Button");
@@ -31,6 +67,7 @@ const Navbar = () => {
 //     document.addEventListener("mousedown",handler)
 // };
 
+console.log("value",Cookies.get("music"));
 
   return (
     <>
@@ -105,7 +142,15 @@ const Navbar = () => {
               >
                 GAME 360
               </h6>
+             
             </Link>
+            <div>
+          {/* Play/Pause button */}
+          <button onClick={toggleAudio} style={{borderRadius : '5px'}}>
+            {isPlaying ?  <MdMusicNote />: <MdMusicOff />}
+          </button>
+          {/* Content to render after loading */}
+        </div>
           </div>
         </div>
       </div>
@@ -122,8 +167,15 @@ const Navbar = () => {
             >
               GAME 360
             </h6>
+            
           </Link>
-
+          <div>
+          {/* Play/Pause button */}
+          <button onClick={toggleAudio} style={{borderRadius : '5px'}}>
+            {isPlaying ?  <MdMusicNote /> : <MdMusicOff />}
+          </button>
+          {/* Content to render after loading */}
+        </div>
           <div class="collapse navbar-collapse mean-menu">
             <ul class="navbar-nav">
               <li class="nav-item">

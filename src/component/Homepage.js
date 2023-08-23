@@ -160,6 +160,7 @@ const Homepage = () => {
     const ani = Cookies.get("ani");
     Checkscore(ani, id).then((response) => {
       if (response.data.response === "Play") {
+        localStorage.setItem('music',false);
         setDisplay("none");
         setFrameDisplay("block");
         if (id === 15) {
@@ -267,18 +268,21 @@ const Homepage = () => {
         <div class="c-main-box">
         <Modal.Header closeButton>
           <div class="c-box">
-            <Modal.Title>Vertically Centered Modal</Modal.Title>
+            <Modal.Title>Game 360</Modal.Title>
           </div>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
         
-        <div class="c-box-inner">
-        
+        {/* <div class="c-box-inner"> */}
+        <section className="player-details-area " >
+        <div className="container">
+          <div className="streams-list score-change">
+        <div class="row vt-show-game">
           {games.length >0 && games.map((item,index)=>{
-            console.log("Test",item.gameName);
+            console.log("Test",item);
             return (
               <>
-              <div class="c-box-inner-img" >  <button className="c-play-btn" type="submit">
+              {/* <div class="c-box-inner-img" >  <button className="c-play-btn" type="submit">
                   Play Game 
                 </button> <button
                 onClick={() => redirectToGame(item.gameUrl, item.id)}
@@ -287,17 +291,31 @@ const Homepage = () => {
               <img src={item.imageUrl} alt="i" />
               <div className="content">
                     <h3 style={{ color: "white" }}>{item.gameName}</h3>
-                  </div></div></button></div></>
+                  </div></div></button></div>
+                   */}
+                    <div className="col-lg-12 col-md-6">
+                    <div className="single-live-stream-item" onClick={()=>{redirectToGame(item.gameUrl,item.id)}} >
+                      <img src={item.imageUrl} alt="i" />
+                      <div className="content">
+                        <h3 style={{ color: "white" }}>{item.gameName}</h3>
+                        {/* <ul className="meta">
+                          <li>Score</li>
+                          <li>{item.score}</li>
+                        </ul> */}
+                      </div>
+                      <a href="#!!" className="video-btn">
+                        <i className="flaticon-play-button" />
+                      </a>
+                      
+                    </div>
+                  </div>
+                  </>
             );
           })}
-              {/* <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div>
-              <div class="c-box-inner-img"><img src={racinggame} alt="i"/></div> */}
             </div>
+            </div>
+            </div>
+            </section>
           {/* Modal content */}
         
         {/* { games.length>0 && games.map((item, index) => {
@@ -392,9 +410,15 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <div class="btn-box d-flex justify-content-center">
-          <span class="default-btn">Score : {score}</span>
-        </div>
+      {/* <div class="btn-box d-flex justify-content-center" >
+          <span class="default-btn" style={{ top: '20px'}}>Score : {score}</span>
+        </div> */}
+
+
+  <div className="btn-box d-flex justify-content-center">
+    <span className="default-btn">Score : {score}</span>
+  
+</div>
       <div
         className="upper-games pb-5"
         // style={{
@@ -690,7 +714,7 @@ const Homepage = () => {
                               {item.gameName}
                               <i className="flaticon-play" />
                             </h3>
-                            <h3 className="rating1">4.5</h3>
+                            <h3 className="rating1">{item.rating}</h3>
                           </div>
                           <span
                             onClick={() => {
