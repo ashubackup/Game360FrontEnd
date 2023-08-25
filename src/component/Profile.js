@@ -30,7 +30,7 @@ const Profile = () => {
   useEffect(() => {
     setData(images);
     Checkuser(ani).then((response) => {
-      console.log("Score", response.data);
+      console.log("Api Response",response);
       setRecord(response.data.sumScore);
       setcurrentPoint(response.data.Points.points);
       setProfileImage(response.data.Points.imageName);
@@ -105,7 +105,7 @@ const Profile = () => {
     
     console.log("UpdateImage",updateImage);
     // 👇️ value of input field
-    console.log('handleClick 👉️', message);
+    console.log('UserName 👉️', message);
     if(message ===null || message === undefined || message === ' ' || message === '' ) 
     {
       setMessage("Player");
@@ -253,14 +253,14 @@ const Profile = () => {
         </div>
         <Modal.Body>
           {/* Modal content */}          
-          <div class="edit-profile">
+          <div class="edit-profile vt-profile-modal">
             <div class="profile-inner">
             <div class="edit-img-box">
             <OwlCarousel  ref={owlCarouselRef}
                 className="story owl-carousel owl-theme"
                 {...options} >
                   {data.map((item)=>{
-                    console.log("data",item.images);
+                    // console.log("data",item.images);
                    return (
                     <div class="edit-img-box-inner" onClick={()=>{handleData(item.id)}}><img src={item.images} class="player-image" alt="i" /></div>
                    )

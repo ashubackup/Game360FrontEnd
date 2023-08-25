@@ -24,7 +24,7 @@ const Points = () => {
 
     Checkuser(ani).then((res)=>{
 
-      console.log("responsPoints",res.data.Points.points)
+      console.log("User Points",res.data.Points.points)
       setShowPoint(res.data.Points.points);
     })
   })

@@ -235,14 +235,15 @@ a.video-btn i {
   height: 350px !important;
   object-fit: cover;
 }
+
 .correction1 .streams-list {
   height: 100%;
   overflow: hidden !important;
 }
 .single-live-stream-item img {
-  height: 350px !important;
-  width: 500px !important;
-  object-fit: cover;
+  height: 300px !important;
+  /* width: 500px !important; */
+  object-fit: fill !important;
 }
 .score-change .single-live-stream-item .content {
   position: absolute;
@@ -569,8 +570,12 @@ button.c-play-btn {
 .modal-body {
   background: #d2d2d2;
 }
-.c-main-box .modal-body {
-  background: #fff;
+.vt-navigation-new .c-main-box .modal-body {
+  /* background: #fff; */
+  background: #fff !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
 }
 .c-main-box .modal-header {
   background: #28070e;
@@ -675,26 +680,19 @@ section.social-area {
     object-fit: cover;
   }
 
-  .edit-img-box-inner:hover img {
-    opacity: 0.5;
-}
+
 
 .edit-img-box-inner {
     width: 75%;
     margin: auto;
 }
 
-.owl-carousel .owl-item img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-} 
+
 
 .page-title-content .player-image {
   max-width: 120px;
   width: 120px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .c-box-inner {
@@ -712,6 +710,10 @@ section.social-area {
   width: 49%;
 }
 
+.vt-show-game .single-live-stream-item {
+  height: 100px !important;
+  width: 320px !important;
+}
 
 
 }
@@ -734,16 +736,61 @@ section.social-area {
 }
 .vt-show-game .single-live-stream-item {
   height: 200px;
-  width: 445px;
+  width: 440px;
+  /* height: 100px;
+  width: 340px; */
 }
 
-.navbar button {
+.navbar span {
   position: absolute;
-  bottom: 0;
-  left: 7%;
+  bottom: -10%;
+  left: 0%;
+  width: 40px;
+  display: block;
+  background: #fff;
+  text-align: center;
+  border-radius: 20px !important;
+  color: red;
 }
 
+.zelda-responsive-menu span {
+  width: 40px;
+  display: block;
+  background: #fff;
+  color: red;
+  text-align: center;
+  border-radius: 20px !important;
+}
 
+.vt-navigation-new .modal-content {
+  margin-top: 94px;
+  border: none;
+}
+.vt-navigation-new .modal-body ul.navbar-nav li {
+  color: #000;
+  font-size: 20px;
+  font-weight: 500;
+  border-bottom: 1px solid #000;
+}
+.vt-navigation-new .modal-header {
+  border: none;
+}
+
+.modal-body ul.navbar-nav li a.nav-link {
+  margin:0 10px;
+  
+}
+
+.vt-profile-modal .owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+} 
+
+.edit-img-box-inner:hover img {
+  opacity: 0.5;
+}
 /********    Corrections End        ********/
 
 
@@ -7258,6 +7305,7 @@ Page Title Area CSS
 .page-title-content .player-image {
   max-width: 120px;
   width: 120px;
+  border-radius: 50%;
 }
 
 .page-title-content h1 {

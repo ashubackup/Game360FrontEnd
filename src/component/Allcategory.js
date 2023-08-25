@@ -37,7 +37,7 @@ const Allcategory = () => {
   useEffect(() => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
     Gameinfo().then((response) => {
-      console.log("reponse", response.data);
+      console.log("GameInfo", response);
 
       setList(response.data);
       // setGames(response.data);
@@ -45,8 +45,7 @@ const Allcategory = () => {
   }, []);
 
   const GameShow = (category) => {
-    console.log("Number", category);
-
+    
     setDisplay("none");
     setGameDisplay("block");
     setGames(

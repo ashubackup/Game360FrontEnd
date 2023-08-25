@@ -164,9 +164,9 @@ const Homepage = () => {
         setDisplay("none");
         setFrameDisplay("block");
         if (id === 15) {
-          setHeight("300px");
+          setHeight("500px");
           setGameLink(
-            list.filter((item) => {
+            list.filter((item) => {   
               return item.id === id;
             })
           );
@@ -246,7 +246,7 @@ const Homepage = () => {
         return item.gameCategory === category;
       })
     );
-    console.log("value",games)
+    // console.log("value",games)
     setModalShow(!modalShow);
   };
 
@@ -266,11 +266,11 @@ const Homepage = () => {
       {/* Vertically Centered Bootstrap Modal */}
       <Modal centered show={modalShow} onHide={handleModalClose}>
         <div class="c-main-box">
-        <Modal.Header closeButton>
+        {/* <Modal.Header closeButton>
           <div class="c-box">
             <Modal.Title>Game 360</Modal.Title>
           </div>
-        </Modal.Header>
+        </Modal.Header> */}
         <Modal.Body >
         
         {/* <div class="c-box-inner"> */}
@@ -279,7 +279,7 @@ const Homepage = () => {
           <div className="streams-list score-change">
         <div class="row vt-show-game">
           {games.length >0 && games.map((item,index)=>{
-            console.log("Test",item);
+            // console.log("Test",item);
             return (
               <>
               {/* <div class="c-box-inner-img" >  <button className="c-play-btn" type="submit">
@@ -293,7 +293,7 @@ const Homepage = () => {
                     <h3 style={{ color: "white" }}>{item.gameName}</h3>
                   </div></div></button></div>
                    */}
-                    <div className="col-lg-12 col-md-6">
+                    <div className="col-lg-12 col-md-12">
                     <div className="single-live-stream-item" onClick={()=>{redirectToGame(item.gameUrl,item.id)}} >
                       <img src={item.imageUrl} alt="i" />
                       <div className="content">
@@ -539,7 +539,7 @@ const Homepage = () => {
               <iframe
                 loading="eager"
                 src={item.gameUrl + "?userId=" + ani + "&gameId=" + item.id}
-                style={{ height: `${height}` }}
+                style={{ height: `${height}`,width :'100%' }}
                 id="game1"
                 title="txt"
               ></iframe>

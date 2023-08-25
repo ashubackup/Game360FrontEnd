@@ -4,6 +4,7 @@ import '../css/radeem.css';
 import '../css/style.css';
 
 const NotValid = () => {
+  console.log("Not Valid User");
   return (
     <>
    

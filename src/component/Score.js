@@ -18,7 +18,8 @@ const Score = () => {
   useEffect(() => {
     const ani = Cookies.get("ani");
     Checkuser(ani).then((response) => {
-      console.log("r", response.data.Points);
+      console.log("points", response.data.Points);
+      console.log("userName",response.data.Points.name);
       setName(response.data.Points.name);
       setShowscore(response.data.Score);
       setProfileImage(response.data.Points.imageName);
@@ -40,8 +41,10 @@ const Score = () => {
 
     Checkscore(ani, gameId).then((response) => {
       if (response.data.response === "Play") {
+        console.log("User Can Play Game");
         window.location.href = gameUrl + "?userId=" + ani + "&gameId=" + gameId;
       } else {
+        console.log("User Dont Have Enough Point to play Game");
         Swal.fire({
           text: "You Don't Have Sufficient Points",
           icon: "error",
@@ -104,7 +107,7 @@ const Score = () => {
             <div className="row">
               <h3 style={{ color: "white" }}>SCORE</h3>
               {Showscore.map((item) => {
-                console.log("item", item);
+                // console.log("item", item);
                 const ani = Cookies.get("ani");
                 return (
                   <div className="col-lg-4 col-md-6">

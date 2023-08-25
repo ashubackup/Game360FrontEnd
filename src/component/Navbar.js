@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import '../css/style.css';
 import {MdMusicNote,MdMusicOff} from 'react-icons/md'
 import TestMusic from "../Music/TestMusic.mp3";
-import useSound from "use-sound";
 import Cookies from 'js-cookie';
+import { Modal } from 'react-bootstrap';
 
 
 const newAudio = new Audio(TestMusic);
@@ -12,9 +12,10 @@ const newAudio = new Audio(TestMusic);
 
 const Navbar = () => {
 
-  const [menu,setMenu] = useState('none');
+  const [menu,setMenu] = useState('block');
   const [audio, setAudio] = useState(null); // State to hold the Audio object
   const [isPlaying, setIsPlaying] = useState(localStorage.getItem("music")); // State to track playing status
+  const [modalShow, setModalShow] = useState(false);
   // let menuRef = useRef();
   
 
@@ -41,31 +42,23 @@ const Navbar = () => {
     
  },[])
 
+ const handleModalClose = () => {
+  setModalShow(!modalShow);
+};
 
   const showMenu=()=> {
-
-    console.log("inside showMenu Button");
+     setModalShow(!modalShow);
+    // console.log("inside showMenu Button"+menu);
  
-    if(menu==='none')
-    {
-      setMenu('block');
-      // handler();
-    }
-    else{
-      setMenu('none');
-    }
+    // if(menu==='none')
+    // {
+    //   setMenu('block');
+    //   // handler();
+    // }
+    // else{
+    //   setMenu('none');
+    // }
 }
-
-// let handler=(e)=>{
-//   console.log("e",e)
-//     if(menuRef.current.contains(e.target))
-//     {
-//       console.log(menu)
-//       setMenu('none');
-//       console.log(menuRef.current)
-//     }
-//     document.addEventListener("mousedown",handler)
-// };
 
 console.log("value",Cookies.get("music"));
 
@@ -90,7 +83,8 @@ console.log("value",Cookies.get("music"));
               </span>
             </button>
             <nav class="mean-nav">
-              <ul class="navbar-nav" style={{display:`${menu}`}}>
+              {/*  `${menu}` */}
+              <ul class="navbar-nav" style={{display: 'none'}}>
                 <li class="nav-item">
                   <Link to="/home" class="nav-link">
                     Home{" "}
@@ -146,9 +140,9 @@ console.log("value",Cookies.get("music"));
             </Link>
             <div>
           {/* Play/Pause button */}
-          <button onClick={toggleAudio} style={{borderRadius : '5px'}}>
+          <span onClick={toggleAudio} style={{borderRadius : '5px'}}>
             {isPlaying ?  <MdMusicNote />: <MdMusicOff />}
-          </button>
+          </span>
           {/* Content to render after loading */}
         </div>
           </div>
@@ -171,9 +165,9 @@ console.log("value",Cookies.get("music"));
           </Link>
           <div>
           {/* Play/Pause button */}
-          <button onClick={toggleAudio} style={{borderRadius : '5px'}}>
+          <span onClick={toggleAudio} style={{borderRadius : '5px'}}>
             {isPlaying ?  <MdMusicNote /> : <MdMusicOff />}
-          </button>
+          </span>
           {/* Content to render after loading */}
         </div>
           <div class="collapse navbar-collapse mean-menu">
@@ -284,6 +278,59 @@ console.log("value",Cookies.get("music"));
     </div>
   </div>
   {/* <!-- End Navbar Area --> */}
+
+  <Modal className="vt-navigation-new" show={modalShow} onHide={handleModalClose}>
+  
+        <div class="c-main-box  ">
+        {/* <Modal.Header closeButton>
+          <div class="c-box">
+          </div>
+        </Modal.Header> */}
+        <Modal.Body >
+        <nav class="mean-nav">
+              <ul class="navbar-nav" style={{display:`${menu}`}}>
+                <li class="nav-item">
+                  <Link to="/home" class="nav-link">
+                    Home{" "}
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/Profile" class="nav-link">
+                    Profile{" "}
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/Score" class="nav-link">
+                    Score{" "}
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/Leader" class="nav-link">
+                    Leaderboard{" "}
+                  </Link>
+                </li>
+
+                <li class="nav-item mean-last">
+                  <Link to="/Points" class="nav-link">
+                    Points{" "}
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link to="/Radeem" class="nav-link">
+                    Redeem{" "}
+                  </Link>
+                </li>
+              </ul>
+              </nav>
+        </Modal.Body>
+        </div>
+        
+        </Modal>
+       
   </>
   )
 }

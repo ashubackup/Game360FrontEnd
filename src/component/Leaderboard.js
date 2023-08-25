@@ -10,7 +10,7 @@ const Leaderboard = () => {
   
   useEffect(() => {
     Leader().then((response) => {
-      console.log("response", response);
+      console.log("LeaderBoardScore", response);
     
       setList(response.data.Score);
     });

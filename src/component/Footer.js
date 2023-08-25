@@ -95,7 +95,7 @@ const Footer = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-12 d-flex justify-content-center">
-                <p>© All copyright reserved by GAME 360 </p>
+                <p>© all copyrights reserved by Visiontrek </p>
               </div>
             </div>
           </div>

@@ -35,7 +35,7 @@ const AllGame = () => {
       behavior: "smooth",
     });
     Gameinfo().then((response) => {
-      console.log("reponse", response.data);
+      console.log("GameInfo", response);
       setList(response.data);
     });
     

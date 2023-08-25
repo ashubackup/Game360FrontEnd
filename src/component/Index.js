@@ -54,7 +54,7 @@ const Index = () => {
           console.log("Response", response.data);
           setData(response.data.Points);
           if (response.data.Points.userType === "OldUser") {
-            console.log("inside if");
+            console.log("Old User");
             if (
               response.data.sumScore == null ||
               response.data.sumScore === undefined
@@ -69,7 +69,7 @@ const Index = () => {
               setLoading(false);
             }
           } else {
-            console.log("else");
+            console.log("New User");
             Cookies.set("score", response.data.sumScore);
             Cookies.set("point", response.data.Points.points);
             setLoading(false);
@@ -86,7 +86,7 @@ const Index = () => {
         });
       }
     } catch {
-      console.log("Excption");
+      console.log("Exception");
     }
   }, []);
 
