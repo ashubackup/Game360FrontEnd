@@ -281,10 +281,203 @@ h3.rating1 {
   background-position: center top;
 }
 .ball {
-  animation: bounce 2s infinite;
-  animation-timing-function: ease;
+  /* animation: bounce 2s infinite;
+  animation-timing-function: ease; */
+  color: #ffffff !important;
+  margin-top: 10px;
+}
+.main-banner-content h6 {
+  color: #ffffff;
 }
 
+/* cus titel */
+.text-animation {
+  min-height: 27vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-wrapper {
+  position: relative;
+}
+
+.text-wrapper h2 {
+  z-index: 4;
+  color: #fff;
+  top: 42px;
+  letter-spacing: 6px;
+  font-size: 158px;
+  white-space: nowrap;
+  position: absolute;
+  transform: translate(-50%, -62%);
+}
+
+.text-wrapper h2:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+}
+
+.text-wrapper h2:nth-child(2) {
+  color: #fff;
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* ============= */
+
+.loader {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+.loader > span {
+  display: inline-block;
+  color: #fff;
+  transform-style: preserve-3d;
+  transform-origin: 0 100%;
+  animation: anim 3s;
+}
+.loader span {
+  font-size: 48px;
+  letter-spacing: 20px;
+}
+.loader > span:nth-child(even) {
+  color: #fc0820;
+}
+.loader > span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.loader > span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.loader > span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.loader > span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+.loader > span:nth-child(6) {
+  animation-delay: 1s;
+}
+.loader > span:nth-child(7) {
+  animation-delay: 1.2s;
+}
+.loader > span:nth-child(8) {
+  animation-delay: 1.4s;
+}
+.loader > span:nth-child(9) {
+  animation-delay: 1.6s;
+}
+.loader > span:nth-child(10) {
+  animation-delay: 1.8s;
+}
+.loader > span:nth-child(11) {
+  animation-delay: 2s;
+}
+.loader > span:nth-child(12) {
+  animation-delay: 2.2s;
+}
+.loader > span:nth-child(13) {
+  animation-delay: 2.4s;
+}
+.loader > span:nth-child(14) {
+  animation-delay: 2.6s;
+}
+@keyframes anim {
+  35% {
+    transform: rotateX(360deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+/* ============ */
+
+@keyframes wave {
+  /* start point */
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 46%,
+      17% 45%,
+      34% 50%,
+      56% 61%,
+      69% 62%,
+      86% 60%,
+      100% 51%,
+      100% 100%,
+      0% 100%
+    );
+  }
+  /* Mid point */
+  50% {
+    clip-path: polygon(
+      0% 59%,
+      16% 64%,
+      33% 65%,
+      52% 61%,
+      70% 52%,
+      85% 47%,
+      100% 48%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}
+
+/*  */
+
+@media only screen and (max-width: 500px) {
+  .p {
+      font-size: 30px;
+      letter-spacing: 0;
+  }
+  .loader span {
+      font-size: 28px;
+      letter-spacing: 6px;
+  }
+  .text-wrapper h2 {
+      top: 32px;
+  }
+    .text-animation {
+      min-height: 14vh;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  
+  .loader span {
+      font-size: 28px;
+      letter-spacing: 6px;
+  }
+  .text-wrapper h2 {
+      top: 32px;
+  }
+    .text-animation {
+      min-height: 14vh;
+  }
+}
+
+
+.cursor {
+  position: absolute;
+  top: 50%;
+  height: 100%;
+  width: 100%;
+  transform: translate(0, -50%);
+  border-right: 2px solid red;
+  animation: cursor-animation 3s ease-in-out forwards alternate infinite;
+}
+
+@keyframes cursor-animation {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
+}
+
+/* end */
 .bounce:nth-child(1) {
   animation-delay:-1000ms;
 }
@@ -10104,6 +10297,3 @@ button.img-btn img {
 }
   }
 /*# sourceMappingURL=style.css.map */
-
-
-

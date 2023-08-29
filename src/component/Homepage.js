@@ -386,8 +386,31 @@ const Homepage = () => {
               data-wow-delay="00ms"
               data-wow-duration="1000ms"
             >
-              Enjoy The Games
+              {/* <div class="cus-titel">
+                <p class="p p1">Enjoy The Games</p>
+                <p class="p p2">Enjoy The Games</p>
+                <p class="p p3">Enjoy The Games
+                <div class="cursor"></div></p>
+              </div> */}
+              <div class="loader">
+                <span>E</span>
+                <span>n</span>
+                <span>j</span>
+                <span>o</span>
+                <span>y</span>
+                <span>-</span>
+                <span>T</span>
+                <span>h</span>
+                <span>e</span>
+                <span>-</span>
+                <span>G</span>
+                <span>a</span>
+                <span>m</span>
+                <span>e</span>
+                <span>s</span>
+              </div>
             </span>
+            
             <div
               className="logo wow animate__animated animate__fadeInUp"
               data-wow-delay="00ms"
@@ -402,9 +425,15 @@ const Homepage = () => {
                   justifyContent: "center",
                 }}
               >
-                <div class="ball bounce bounce1">3</div>
+                <div class="text-animation">
+                  <div class="text-wrapper">
+                    <h2>360</h2>
+                    <h2>360</h2>
+                  </div>
+                </div>
+                {/* <div class="ball bounce bounce1">3</div>
                 <div class="ball bounce bounce2">6</div>
-                <div class="ball bounce bounce3">0</div>
+                <div class="ball bounce bounce3">0</div> */}
               </h6>
             </div>
           </div>
