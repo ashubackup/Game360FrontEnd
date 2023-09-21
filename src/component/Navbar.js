@@ -5,6 +5,8 @@ import {MdMusicNote,MdMusicOff} from 'react-icons/md'
 import TestMusic from "../Music/TestMusic.mp3";
 import Cookies from 'js-cookie';
 import { Modal } from 'react-bootstrap';
+import gameLogo  from '../images/logo360.png'
+import logo from '../images/logo.png';
 
 
 const newAudio = new Audio(TestMusic);
@@ -134,7 +136,7 @@ console.log("value",Cookies.get("music"));
                 style={{color:'white'}}
                 
               >
-                GAME 360
+                <img src={localStorage.getItem("logo")} alt="1" />
               </h6>
              
             </Link>
@@ -159,7 +161,8 @@ console.log("value",Cookies.get("music"));
               data-wow-delay="00ms"
               data-wow-duration="1000ms"
             >
-              GAME 360
+             <img src={localStorage.getItem("logo")} alt="1" />
+
             </h6>
             
           </Link>

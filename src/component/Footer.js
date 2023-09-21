@@ -78,7 +78,7 @@ const Footer = () => {
           <div className="container">
             <div className="footer-content">
               <div className="logo">
-                <Link to="/home" style={{color:'white'}} className="d-inline-block"> <h6 className="wow animate__animated animate__fadeInRight" data-wow-delay="00ms" data-wow-duration="1000ms">GAME 360</h6>
+                <Link to="/home" style={{color:'white'}} className="d-inline-block"> <h6 className="wow animate__animated animate__fadeInRight" data-wow-delay="00ms" data-wow-duration="1000ms">GAME {localStorage.getItem("GameName")}</h6>
                 </Link>
                 <ul className="footer-menu">
                   <li className="nav-item"><a className="nav-link" href="#!">Legal</a></li>

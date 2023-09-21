@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 
 
-// const baseApi = 'http://5.189.166.187:9981/Game360BackEndApi/';
-const baseApi='https://game360.bigcash.co.za/';
+const baseApi = 'http://5.189.166.187:9981/Game360BackEndApi/';
+// const baseApi='https://game360.bigcash.co.za/';
 // const baseApi='http://localhost:3832/';
 // const gameInfoApi = 'http://5.189.166.187:9981/Game360/'
 

@@ -9,6 +9,8 @@ import { TailSpin } from "react-loader-spinner"; // Import the loader component 
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; // Update this import
 import TestMusic from "../Music/TestMusic.mp3";
 import useSound from "use-sound";
+import logo from '../images/360.png';
+import boxlogo from '../images/logo360.png';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -43,6 +45,19 @@ const Index = () => {
   
       let params = new URLSearchParams(window.location.search);
       let ani = params.get("ani");
+      let serviceId=params.get("serviceId");
+      if(serviceId==null || serviceId==="undefined") 
+      {
+        localStorage.setItem("GameName","BOX");
+        localStorage.setItem("logo",boxlogo);
+      }
+      else
+      {
+        localStorage.setItem("logo",logo);
+        localStorage.setItem("GameName","360");
+
+      }
+     
 
       console.log("ani", ani);
       if (ani === "" || ani === null) {

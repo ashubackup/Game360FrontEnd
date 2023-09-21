@@ -427,8 +427,8 @@ const Homepage = () => {
               >
                 <div class="text-animation">
                   <div class="text-wrapper">
-                    <h2>360</h2>
-                    <h2>360</h2>
+                    <h2>{localStorage.getItem("GameName")}</h2>
+                    <h2>{localStorage.getItem("GameName")}</h2>
                   </div>
                 </div>
                 {/* <div class="ball bounce bounce1">3</div>
@@ -735,7 +735,7 @@ const Homepage = () => {
                 <div className="row">
                   {list.map((item, index) => {
                     return (
-                      <div className="col-lg-6 col-md-6 pb-4">
+                      <div className="col-lg-6 col-md-6 col-sm-6 col-6 pb-4">
                         <div className="single-live-stream-box">
                           <img src={item.imageUrl} alt="i" />
                           <div className="content">

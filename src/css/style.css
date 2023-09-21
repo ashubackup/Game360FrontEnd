@@ -525,10 +525,7 @@ h3.rating1 {
   .correction1 {
     padding-top: 0px !important;
   }
-  .single-live-stream-box img {
-    width: 624px !important;
-    height: 225px !important;
-  }
+ 
   .single-live-stream-item img {
     height: 115px !important;
     width: 175px !important;
@@ -912,9 +909,14 @@ section.social-area {
 }
 /* //MEdia Query End */
 
-.streams-list {
+/* .streams-list {
   height: max-content;
   overflow-y: auto;
+} */
+.streams-list {
+  height: -webkit-max-content;
+  max-height: 600px;
+  overflow-x: hidden;
 }
 .Loader {
   height: 100vh;
@@ -923,9 +925,13 @@ section.social-area {
   align-items: center;
 }
 
-.vt-show-game .single-live-stream-item img {
+/* .vt-show-game .single-live-stream-item img {
   height: 100% !important;
   width: 100%;
+} */
+.vt-show-game .single-live-stream-item {
+  height: 225px;
+  width: 440px;
 }
 .vt-show-game .single-live-stream-item {
   height: 200px;
@@ -933,7 +939,13 @@ section.social-area {
   /* height: 100px;
   width: 340px; */
 }
-
+.streams-list.score-change::-webkit-scrollbar-thumb {
+  background-color: #000;
+}
+.streams-list.score-change::-webkit-scrollbar {
+  width: 4px;
+  background-color: #fff;
+}
 .navbar span {
   position: absolute;
   bottom: -10%;
@@ -4221,8 +4233,8 @@ Live Stream Area CSS
 .single-live-stream-box .content h3 {
   margin-bottom: 0;
   text-transform: uppercase;
-  display: inline-block;
-  font-size: 34px;
+  display: flex;
+  align-items: center;
   font-weight: 600;
   color: white;
 }
@@ -10294,6 +10306,59 @@ button.img-btn img {
   button.img-btn {
     margin-top: 50px;
     margin-bottom: 30px;
+}
+  }
+  @media screen and (max-width: 767px){
+    .single-live-stream-item .video-btn {
+      font-size: 12px;
+      height: 25px;
+      line-height: 25px;
+      right: 30px;
+      top: 10px;
+      width: 25px;
+  }
+  .streams-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+  }
+  @media only screen and (max-width: 768px){
+    .score-change .single-live-stream-item .content {
+      bottom: 0!important;
+      left: 175px!important;
+      padding: 30px 10px 25px 16px;
+      position: absolute;
+      z-index: 2;
+  }
+  .single-live-stream-box img {
+    width: 624px !important;
+    height: 145px !important;
+  }
+  .single-live-stream-box .content h3 {
+      font-size: 12px !important;
+  } 
+  .single-live-stream-box .content {
+      padding: 5px !important;
+  }
+  .single-live-stream-box .content h3 i {
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      font-size: 12px;
+      margin-left: 10px;
+  }
+  h3.rating1 {
+    width: 40px;
+    margin-top: -24px;
+    height: 20px;
+    background: red;
+    border-radius: 0;
+    text-align: center;
+    display: flex !important;
+    padding: 0;
+    clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+    justify-content: center;
+    align-items: center;
 }
   }
 /*# sourceMappingURL=style.css.map */
